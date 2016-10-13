@@ -1,0 +1,54 @@
+Building ...
+... done. Elapsed 0.25443714 seconds
+Watching paths: /Users/dionlow/Projects/closure_test/hello_world/src
+Change detected, recompiling ...
+Compiling src/hello_world/core.cljs
+Copying file:/Users/dionlow/Projects/closure_test/hello_world/src/hello_world/core.cljs to out/hello_world/core.cljs
+... done. Elapsed 0.241713285 seconds
+Change detected, recompiling ...
+clojure.lang.ExceptionInfo: EOF while reading, starting at line 1 and column 1 {:type :reader-exception, :line 8, :column 1, :file "/Users/dionlow/Projects/closure_test/hello_world/src/hello_world/core.cljs"}
+	at clojure.core$ex_info.invokeStatic(core.clj:4617)
+	at clojure.tools.reader.reader_types$reader_error.invokeStatic(reader_types.clj:395)
+	at clojure.tools.reader$read_delimited.invokeStatic(reader.clj:202)
+	at clojure.tools.reader$read_list.invokeStatic(reader.clj:209)
+	at clojure.tools.reader$read_list.invoke(reader.clj:206)
+	at clojure.tools.reader$read_STAR_.invokeStatic(reader.clj:916)
+	at clojure.tools.reader$read.invokeStatic(reader.clj:965)
+	at cljs.analyzer$forms_seq_STAR_$forms_seq___1861$fn__1862$fn__1863.invoke(analyzer.cljc:2947)
+	at cljs.analyzer$forms_seq_STAR_$forms_seq___1861$fn__1862.invoke(analyzer.cljc:2947)
+	at clojure.lang.LazySeq.sval(LazySeq.java:40)
+	at clojure.lang.LazySeq.seq(LazySeq.java:49)
+	at clojure.lang.RT.seq(RT.java:521)
+	at clojure.core$seq__4357.invokeStatic(core.clj:137)
+	at cljs.analyzer$parse_ns$fn__1876.invoke(analyzer.cljc:3031)
+	at cljs.analyzer$parse_ns.invokeStatic(analyzer.cljc:3009)
+	at cljs.analyzer$parse_ns.invoke(analyzer.cljc:2991)
+	at cljs.analyzer$parse_ns.invokeStatic(analyzer.cljc:3001)
+	at cljs.compiler$find_source.invokeStatic(compiler.cljc:1431)
+	at cljs.compiler$find_source.invoke(compiler.cljc:1431)
+	at clojure.core$map$fn__4785.invoke(core.clj:2646)
+	at clojure.lang.LazySeq.sval(LazySeq.java:40)
+	at clojure.lang.LazySeq.seq(LazySeq.java:49)
+	at clojure.lang.RT.seq(RT.java:521)
+	at clojure.core$seq__4357.invokeStatic(core.clj:137)
+	at clojure.core$reduce1.invokeStatic(core.clj:911)
+	at clojure.core$set.invokeStatic(core.clj:3983)
+	at cljs.closure$add_dependency_sources.invokeStatic(closure.clj:792)
+	at cljs.closure$build.invokeStatic(closure.clj:1985)
+	at cljs.closure$watch$buildf__4545.invoke(closure.clj:2091)
+	at cljs.closure$watch.invokeStatic(closure.clj:2158)
+	at cljs.repl$repl_STAR_$fn__5124$fn__5129.invoke(repl.cljc:938)
+	at clojure.core$binding_conveyor_fn$fn__4676.invoke(core.clj:1938)
+	at clojure.lang.AFn.run(AFn.java:22)
+	at java.lang.Thread.run(Thread.java:745)
+
+Change detected, recompiling ...
+Compiling src/hello_world/core.cljs
+Copying file:/Users/dionlow/Projects/closure_test/hello_world/src/hello_world/core.cljs to out/hello_world/core.cljs
+... done. Elapsed 0.133610465 seconds
+Change detected, recompiling ...
+Copying jar:file:/Users/dionlow/Projects/closure_test/hello_world/cljs.jar!/cljs/nodejs.cljs to out/cljs/nodejs.cljs
+Compiling out/cljs/nodejs.cljs
+Compiling src/hello_world/core.cljs
+Copying file:/Users/dionlow/Projects/closure_test/hello_world/src/hello_world/core.cljs to out/hello_world/core.cljs
+... done. Elapsed 0.163383103 seconds

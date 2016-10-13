@@ -1,0 +1,141 @@
+(ns clojure-noob.core
+  (:gen-class))
+
+(defn -main
+  "I don't do a whole lot ... yet."
+  [& args]
+  (println "I'm a little teapot!")
+
+  (if false
+    "By Zues's Hammer"
+    "By Aquaman's Trident")
+
+
+  (if true
+    (do (println "Success!")
+        "By Zues's Hammer")
+    (do (println "Failure!")
+        "By Aquaman's trident!"))
+
+
+  (nil? 1)
+  (nil? nil)
+
+;; truthy and falsey
+  (if "bear eat beets"
+    "bears beets Battlestar Galactica")
+
+
+  
+
+
+
+)
+
+(def asym-hobbit-body-parts [{:name "head" :size 3}
+                             {:name "left-eye" :size 1}
+                             {:name "left-ear" :size 1}
+                             {:name "mouth" :size 1}
+                             {:name "nose" :size 1}
+                             {:name "neck" :size 2}
+                             {:name "left-shoulder" :size 3}
+                             {:name "left-upper-arm" :size 3}
+                             {:name "chest" :size 10}
+                             {:name "back" :size 10}
+                             {:name "left-forearm" :size 3}
+                             {:name "abdomen" :size 6}
+                             {:name "left-kidney" :size 1}
+                             {:name "left-hand" :size 2}
+                             {:name "left-knee" :size 2}
+                             {:name "left-thigh" :size 4}
+                             {:name "left-lower-leg" :size 3}
+                             {:name "left-achilles" :size 1}
+                             {:name "left-foot" :size 2}])
+
+
+(defn matching-part
+  "creates symmetric part "
+  [part]
+  {:name (clojure.string/replace (:name part) #"^left" "right")
+   :size (:size part)})
+
+;; example test call
+;;(matching-part (get asym-hobbit-body-parts 2))
+
+(defn symmetrize-body-parts
+  "let-loop implementation to create symmetrical body parts"
+  [asym-body-parts]
+  (loop [remaining-body-parts asym-body-parts
+         final-body-parts []]
+    (if (empty? remaining-body-parts)
+      final-body-parts
+      (let [[part & remaining] remaining-body-parts]
+        (recur remaining
+               (into final-body-parts
+                     (set [part (matching-part part)])))))))
+
+;;(symmetrize-body-parts asym-hobbit-body-parts)
+
+
+
+(defn better-symmetrize-body-parts
+  "reduce implementation to create symmetrical body parts"
+  [asym-body-parts]
+  (reduce (fn [final-body-parts part]
+            (into final-body-parts (set [part (matching-part part)])))
+          [] ;; initial vectro
+          asym-body-parts)) ;; vector passed into anonymous function
+
+
+(defn hit
+  "generates porportional hobbit target"
+  [asym-body-parts]
+  (let [complete-hobbit-parts (better-symmetrize-body-parts asym-body-parts) 
+        hobbit-size-sum (reduce + (map :size complete-hobbit-parts))
+        target (rand hobbit-size-sum)]
+    (println (str "The target is: " target))
+    (loop [[part & remaining] complete-hobbit-parts
+           accumulated-size (:size part)]
+      (if (> accumulated-size target)
+        part
+        (recur remaining (+ accumulated-size (:size (first remaining ))))))))
+
+;; Use str, vector, list, hash-map, hash-set fn
+
+(vector "Bob" "Russ" "Jimmy")
+(list "1" "5ive" {3,4})
+(hash-map :key1 "value1" :key2 "value2")
+(hash-set 3 4 5 6 6 5 4 3 1)
+
+;; Write a function that takes a number and adds 100 to it
+(defn add100
+  [x]
+  (+ x 100))
+
+;; Write a function, decmaker that works like inc-maker except with subtraction
+(defn dec-maker
+  [dec-amt]
+  #(- % dec-amt))
+
+(def dec9 (dec-maker 9))
+
+;; Write a function, mapset that works like map except the return value is a set. 
+(defn mapset
+  [fn list]
+  (set (map fn list )))
+
+;; Create a function similiar to symmetrize-body-parts except instead of two eyes, arms, legs, etc... they have 5
+
+(defn matching-part-extra
+  "creates missing part given prefix needed "
+  [part prefix]
+  {:name (clojure.string/replace (:name part) #"^left" prefix)
+   :size (:size part)})
+
+(defn better-symmetrize-body-parts-extra
+  "reduce implementation to create symmetrical body parts given extra limbs needed"
+  [asym-body-parts no-extra]
+  (reduce (fn [final-body-parts part]
+            (into final-body-parts (set [part (map #(matching-part-extra part %) (map str (range no-extra)))])))
+          []
+            asym-body-parts))
